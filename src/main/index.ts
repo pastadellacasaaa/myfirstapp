@@ -3,6 +3,33 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
+// ----- for updates -------
+import { autoUpdater } from 'electron-updater'
+import { dialog} from 'electron'
+
+autoUpdater.checkForUpdatesAndNotify()
+
+autoUpdater.on('update-available', () => {
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Update Available',
+    message: 'A new version is available. Downloading now...',
+  })
+})
+
+autoUpdater.on('update-downloaded', () => {
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Update Ready',
+    message: 'Install and restart now?',
+    buttons: ['Yes', 'Later']
+  }).then((result) => {
+    if (result.response === 0) autoUpdater.quitAndInstall()
+  })
+})
+
+// ------------
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
