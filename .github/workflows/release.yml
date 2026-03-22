@@ -24,8 +24,8 @@ jobs:
         with:
           name: windows-installers
           path: |
-            dist-packages/*.exe
-            dist-packages/*.msi
+            dist/*.exe
+            dist/*.msi
 
   # Build macOS DMG
   macos:
