@@ -44,5 +44,6 @@ publish:
   provider: github
   owner: pastadellacasaaa
   repo: myfirstapp
+  publishAutoUpdate: false
   #asar: true
   #url: https://example.com/auto-updates
