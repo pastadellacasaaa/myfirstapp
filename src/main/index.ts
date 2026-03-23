@@ -7,7 +7,9 @@ import icon from '../../resources/icon.png?asset'
 import { autoUpdater } from 'electron-updater'
 import { dialog} from 'electron'
 
-autoUpdater.checkForUpdatesAndNotify()
+// Ensure download doesn't get stuck
+autoUpdater.autoDownload = true
+autoUpdater.allowDowngrade = false
 
 autoUpdater.on('update-available', () => {
   dialog.showMessageBox({
@@ -80,6 +82,10 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+
+  if (!is.dev) {
+    autoUpdater.checkForUpdatesAndNotify()
+  }
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

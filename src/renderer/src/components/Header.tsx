@@ -4,7 +4,7 @@ import { JSX } from 'react'
 const Header = (): JSX.Element => {
   return (
     <header style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-      <CheckCircle color="#FFD700" size={32} />
+      <CheckCircle color="#bd6edc" size={32} />
       <h1 style={{ color: 'black' }}>My Desktop To-Do</h1>
     </header>
   )
